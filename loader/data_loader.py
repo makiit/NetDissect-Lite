@@ -8,7 +8,8 @@ import csv
 import settings
 import numpy as np
 from collections import OrderedDict
-from scipy.misc import imread
+from imageio import imread
+# from scipy.misc import imread
 from multiprocessing import Pool, cpu_count
 from multiprocessing.pool import ThreadPool
 from scipy.ndimage.interpolation import zoom
@@ -697,7 +698,7 @@ def normalize_image(rgb_image, bgr_mean):
 def normalize_label(label_data, shape, flatten=False):
     """
     Given a 0, 1, 2, or 3-dimensional label_data and a default
-    shape of the form (1, y, x), returns a 3d tensor by 
+    shape of the form (1, y, x), returns a 3d tensor by
     """
     dims = len(numpy.shape(label_data))
     if dims <= 2:
