@@ -191,6 +191,8 @@ class FeatureOperator:
                         tally_units_cat[unit_id] += len(indexes) * (tally_cat > 0)
 
 
+
+
     def tally(self, features, threshold, savepath=''):
         csvpath = os.path.join(settings.OUTPUT_FOLDER, savepath)
         if savepath and os.path.exists(csvpath):
@@ -213,7 +215,7 @@ class FeatureOperator:
             threadpool.map(FeatureOperator.tally_job, params)
         else:
             FeatureOperator.tally_job((features, self.data, threshold, tally_labels, tally_units, tally_units_cat, tally_both, 0, self.data.size()))
-
+        print("OUT")
         primary_categories = self.data.primary_categories_per_index()
         tally_units_cat = np.dot(tally_units_cat, self.data.labelcat.T)
         iou = tally_both / (tally_units_cat + tally_labels[np.newaxis,:] - tally_both + 1e-10)
