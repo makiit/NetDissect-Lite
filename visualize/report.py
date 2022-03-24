@@ -4,7 +4,10 @@ viewprobe creates visualizations for a certain eval.
 
 import re
 import numpy
-from scipy.misc import imread, imresize, imsave
+# from scipy.misc import imresize
+from PIL import Image
+from imageio import imread 
+from imageio import imwrite as imsave1
 import visualize.expdir as expdir
 import visualize.bargraph as bargraph
 import settings
@@ -92,11 +95,11 @@ def generate_html_summary(ds, layer, maxfeature=None, features=None, thresholds=
                 row = x // gridwidth
                 col = x % gridwidth
                 image = imread(ds.filename(index))
-                mask = imresize(features[index][unit], image.shape[:2], mode='F')
+                mask = np.array(Image.fromarray(feature_map).resize(features[index][unit], image.shape[:2], mode='F'))
                 mask = mask > thresholds[unit]
                 vis = (mask[:, :, numpy.newaxis] * 0.8 + 0.2) * image
                 if vis.shape[:2] != (imsize, imsize):
-                    vis = imresize(vis, (imsize, imsize))
+                    vis = np.array(Image.fromarray(feature_map).resize(vis, (imsize, imsize)))
                 tiled[row*(imsize+gap):row*(imsize+gap)+imsize,
                       col*(imsize+gap):col*(imsize+gap)+imsize,:] = vis
             imsave(ed.filename('html/' + imfn), tiled)
