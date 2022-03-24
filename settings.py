@@ -37,7 +37,7 @@ if DATASET == 'places365':
 elif DATASET == 'imagenet':
     NUM_CLASSES = 1000
 if MODEL == 'resnet18':
-    FEATURE_NAMES = ['layer4']
+    FEATURE_NAMES = ['layer3']
     if DATASET == 'places365':
         MODEL_FILE = 'zoo/resnet18_places365.pth.tar'
         MODEL_PARALLEL = True
