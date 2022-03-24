@@ -1,0 +1,1480 @@
+
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<style>
+.unitviz, .unitviz .modal-header, .unitviz .modal-body, .unitviz .modal-footer {
+  font-family: Arial;
+  font-size: 15px;
+}
+.unitgrid {
+  text-align: center;
+  border-spacing: 5px;
+  border-collapse: separate;
+}
+.unitgrid .info {
+  text-align: left;
+}
+.unitgrid .layername {
+  display: none;
+}
+.unitlabel {
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+  line-height: 1;
+}
+.lowscore .unitlabel {
+   color: silver;
+}
+.thumbcrop {
+  overflow: hidden;
+  width: 288px;
+  height: 72px;
+}
+.unit {
+  display: inline-block;
+  background: white;
+  padding: 3px;
+  margin: 2px;
+  box-shadow: 0 5px 12px grey;
+}
+.iou {
+  display: inline-block;
+  float: right;
+}
+.modal .big-modal {
+  width:auto;
+  max-width:90%;
+  max-height:80%;
+}
+.modal-title {
+  display: inline-block;
+}
+.footer-caption {
+  float: left;
+  width: 100%;
+}
+.histogram {
+  text-align: center;
+  margin-top: 3px;
+}
+.img-wrapper {
+  text-align: center;
+}
+.big-modal img {
+  max-height: 60vh;
+}
+.img-scroller {
+  overflow-x: scroll;
+}
+.img-scroller .img-fluid {
+  max-width: initial;
+}
+.gridheader {
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.gridheader:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.sortheader {
+  float: right;
+  cursor: default;
+}
+.layerinfo {
+  float: left;
+}
+.sortby {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.sortby.currentsort {
+  text-decoration: none;
+  font-weight: bold;
+  cursor: default;
+}
+</style>
+</head>
+<body class="unitviz">
+<div class="container-fluid">
+
+<div class="histogram">
+<img class="img-fluid" src="image/layer3-bargraph.svg" title="Summary of pytorch_resnet18_places365 layer3">
+</div>
+<div class="gridheader">
+<div class="layerinfo">
+78/256 units covering 39 concepts with IoU &ge; 0.04
+</div>
+
+<div class="sortheader">
+sort by
+<span class="sortby currentsort" data-index="0">label</span>
+<span class="sortby" data-index="1">score</span>
+<span class="sortby" data-index="2">unit</span>
+</div>
+
+</div>
+<div class="unitgrid"
+><div class="unit" data-order="0 32 13">
+<div class="unitlabel">person</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 13</span> <span class="category">(object)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0012.jpg" height="72"></div>
+</div
+><div class="unit" data-order="1 56 87">
+<div class="unitlabel">person</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 87</span> <span class="category">(object)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0086.jpg" height="72"></div>
+</div
+><div class="unit" data-order="2 62 90">
+<div class="unitlabel">person</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 90</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0089.jpg" height="72"></div>
+</div
+><div class="unit" data-order="3 64 178">
+<div class="unitlabel">person</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 178</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0177.jpg" height="72"></div>
+</div
+><div class="unit" data-order="4 7 141">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 141</span> <span class="category">(object)</span> <span class="iou">IoU 0.11</span></div>
+<div class="thumbcrop"><img src="image/layer3-0140.jpg" height="72"></div>
+</div
+><div class="unit" data-order="5 76 131">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 131</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0130.jpg" height="72"></div>
+</div
+><div class="unit" data-order="6 26 134">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 134</span> <span class="category">(object)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0133.jpg" height="72"></div>
+</div
+><div class="unit" data-order="7 28 92">
+<div class="unitlabel">road</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 92</span> <span class="category">(object)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0091.jpg" height="72"></div>
+</div
+><div class="unit" data-order="8 30 142">
+<div class="unitlabel">cat</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 142</span> <span class="category">(object)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0141.jpg" height="72"></div>
+</div
+><div class="unit" data-order="9 47 120">
+<div class="unitlabel">sky</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 120</span> <span class="category">(object)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0119.jpg" height="72"></div>
+</div
+><div class="unit" data-order="10 49 94">
+<div class="unitlabel">tree</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 94</span> <span class="category">(object)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0093.jpg" height="72"></div>
+</div
+><div class="unit" data-order="11 50 126">
+<div class="unitlabel">horse</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 126</span> <span class="category">(object)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0125.jpg" height="72"></div>
+</div
+><div class="unit" data-order="12 51 170">
+<div class="unitlabel">curtain</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 170</span> <span class="category">(object)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0169.jpg" height="72"></div>
+</div
+><div class="unit" data-order="13 54 3">
+<div class="unitlabel">building</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 3</span> <span class="category">(object)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0002.jpg" height="72"></div>
+</div
+><div class="unit" data-order="14 19 229">
+<div class="unitlabel">ball pit</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 229</span> <span class="category">(scene)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0228.jpg" height="72"></div>
+</div
+><div class="unit" data-order="15 37 185">
+<div class="unitlabel">mountain snowy</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 185</span> <span class="category">(scene)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0184.jpg" height="72"></div>
+</div
+><div class="unit" data-order="16 65 163">
+<div class="unitlabel">highway</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 163</span> <span class="category">(scene)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0162.jpg" height="72"></div>
+</div
+><div class="unit" data-order="17 4 189">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 189</span> <span class="category">(part)</span> <span class="iou">IoU 0.11</span></div>
+<div class="thumbcrop"><img src="image/layer3-0188.jpg" height="72"></div>
+</div
+><div class="unit" data-order="18 34 212">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 212</span> <span class="category">(part)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0211.jpg" height="72"></div>
+</div
+><div class="unit" data-order="19 61 159">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 159</span> <span class="category">(part)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0158.jpg" height="72"></div>
+</div
+><div class="unit" data-order="20 66 206">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 206</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0205.jpg" height="72"></div>
+</div
+><div class="unit" data-order="21 41 237">
+<div class="unitlabel">drawer</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 237</span> <span class="category">(part)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0236.jpg" height="72"></div>
+</div
+><div class="unit" data-order="22 42 61">
+<div class="unitlabel">drawer</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 61</span> <span class="category">(part)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0060.jpg" height="72"></div>
+</div
+><div class="unit" data-order="23 48 75">
+<div class="unitlabel">head</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 75</span> <span class="category">(part)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0074.jpg" height="72"></div>
+</div
+><div class="unit" data-order="24 60 243">
+<div class="unitlabel">head</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 243</span> <span class="category">(part)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0242.jpg" height="72"></div>
+</div
+><div class="unit" data-order="25 5 66">
+<div class="unitlabel">hair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 66</span> <span class="category">(part)</span> <span class="iou">IoU 0.11</span></div>
+<div class="thumbcrop"><img src="image/layer3-0065.jpg" height="72"></div>
+</div
+><div class="unit" data-order="26 12 231">
+<div class="unitlabel">pane</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 231</span> <span class="category">(part)</span> <span class="iou">IoU 0.10</span></div>
+<div class="thumbcrop"><img src="image/layer3-0230.jpg" height="72"></div>
+</div
+><div class="unit" data-order="27 17 130">
+<div class="unitlabel">roof</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 130</span> <span class="category">(part)</span> <span class="iou">IoU 0.09</span></div>
+<div class="thumbcrop"><img src="image/layer3-0129.jpg" height="72"></div>
+</div
+><div class="unit" data-order="28 20 108">
+<div class="unitlabel">crosswalk</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 108</span> <span class="category">(part)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0107.jpg" height="72"></div>
+</div
+><div class="unit" data-order="29 57 128">
+<div class="unitlabel">lid</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 128</span> <span class="category">(part)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0127.jpg" height="72"></div>
+</div
+><div class="unit" data-order="30 59 47">
+<div class="unitlabel">top</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 47</span> <span class="category">(part)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0046.jpg" height="72"></div>
+</div
+><div class="unit" data-order="31 72 31">
+<div class="unitlabel">arm</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 31</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0030.jpg" height="72"></div>
+</div
+><div class="unit" data-order="32 77 225">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 225</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0224.jpg" height="72"></div>
+</div
+><div class="unit" data-order="33 0 203">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 203</span> <span class="category">(texture)</span> <span class="iou">IoU 0.18</span></div>
+<div class="thumbcrop"><img src="image/layer3-0202.jpg" height="72"></div>
+</div
+><div class="unit" data-order="34 3 71">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 71</span> <span class="category">(texture)</span> <span class="iou">IoU 0.12</span></div>
+<div class="thumbcrop"><img src="image/layer3-0070.jpg" height="72"></div>
+</div
+><div class="unit" data-order="35 6 83">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 83</span> <span class="category">(texture)</span> <span class="iou">IoU 0.11</span></div>
+<div class="thumbcrop"><img src="image/layer3-0082.jpg" height="72"></div>
+</div
+><div class="unit" data-order="36 22 81">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 81</span> <span class="category">(texture)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0080.jpg" height="72"></div>
+</div
+><div class="unit" data-order="37 23 119">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 119</span> <span class="category">(texture)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0118.jpg" height="72"></div>
+</div
+><div class="unit" data-order="38 36 234">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 234</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0233.jpg" height="72"></div>
+</div
+><div class="unit" data-order="39 39 68">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 68</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0067.jpg" height="72"></div>
+</div
+><div class="unit" data-order="40 46 179">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 179</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0178.jpg" height="72"></div>
+</div
+><div class="unit" data-order="41 55 50">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 50</span> <span class="category">(texture)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0049.jpg" height="72"></div>
+</div
+><div class="unit" data-order="42 74 24">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 24</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0023.jpg" height="72"></div>
+</div
+><div class="unit" data-order="43 1 84">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 84</span> <span class="category">(texture)</span> <span class="iou">IoU 0.17</span></div>
+<div class="thumbcrop"><img src="image/layer3-0083.jpg" height="72"></div>
+</div
+><div class="unit" data-order="44 2 215">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 215</span> <span class="category">(texture)</span> <span class="iou">IoU 0.15</span></div>
+<div class="thumbcrop"><img src="image/layer3-0214.jpg" height="72"></div>
+</div
+><div class="unit" data-order="45 8 2">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 2</span> <span class="category">(texture)</span> <span class="iou">IoU 0.10</span></div>
+<div class="thumbcrop"><img src="image/layer3-0001.jpg" height="72"></div>
+</div
+><div class="unit" data-order="46 9 115">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 115</span> <span class="category">(texture)</span> <span class="iou">IoU 0.10</span></div>
+<div class="thumbcrop"><img src="image/layer3-0114.jpg" height="72"></div>
+</div
+><div class="unit" data-order="47 14 210">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 210</span> <span class="category">(texture)</span> <span class="iou">IoU 0.09</span></div>
+<div class="thumbcrop"><img src="image/layer3-0209.jpg" height="72"></div>
+</div
+><div class="unit" data-order="48 27 153">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 153</span> <span class="category">(texture)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0152.jpg" height="72"></div>
+</div
+><div class="unit" data-order="49 35 239">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 239</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0238.jpg" height="72"></div>
+</div
+><div class="unit" data-order="50 67 226">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 226</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0225.jpg" height="72"></div>
+</div
+><div class="unit" data-order="51 13 166">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 166</span> <span class="category">(texture)</span> <span class="iou">IoU 0.10</span></div>
+<div class="thumbcrop"><img src="image/layer3-0165.jpg" height="72"></div>
+</div
+><div class="unit" data-order="52 24 34">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 34</span> <span class="category">(texture)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0033.jpg" height="72"></div>
+</div
+><div class="unit" data-order="53 33 133">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 133</span> <span class="category">(texture)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0132.jpg" height="72"></div>
+</div
+><div class="unit" data-order="54 44 136">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 136</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0135.jpg" height="72"></div>
+</div
+><div class="unit" data-order="55 52 124">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 124</span> <span class="category">(texture)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0123.jpg" height="72"></div>
+</div
+><div class="unit" data-order="56 11 242">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 242</span> <span class="category">(texture)</span> <span class="iou">IoU 0.10</span></div>
+<div class="thumbcrop"><img src="image/layer3-0241.jpg" height="72"></div>
+</div
+><div class="unit" data-order="57 21 202">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 202</span> <span class="category">(texture)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0201.jpg" height="72"></div>
+</div
+><div class="unit" data-order="58 75 7">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 7</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0006.jpg" height="72"></div>
+</div
+><div class="unit" data-order="59 15 27">
+<div class="unitlabel">grid</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 27</span> <span class="category">(texture)</span> <span class="iou">IoU 0.09</span></div>
+<div class="thumbcrop"><img src="image/layer3-0026.jpg" height="72"></div>
+</div
+><div class="unit" data-order="60 40 62">
+<div class="unitlabel">grid</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 62</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0061.jpg" height="72"></div>
+</div
+><div class="unit" data-order="61 63 72">
+<div class="unitlabel">grid</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 72</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0071.jpg" height="72"></div>
+</div
+><div class="unit" data-order="62 18 54">
+<div class="unitlabel">zigzagged</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 54</span> <span class="category">(texture)</span> <span class="iou">IoU 0.08</span></div>
+<div class="thumbcrop"><img src="image/layer3-0053.jpg" height="72"></div>
+</div
+><div class="unit" data-order="63 45 238">
+<div class="unitlabel">zigzagged</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 238</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0237.jpg" height="72"></div>
+</div
+><div class="unit" data-order="64 68 171">
+<div class="unitlabel">zigzagged</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 171</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0170.jpg" height="72"></div>
+</div
+><div class="unit" data-order="65 31 160">
+<div class="unitlabel">cobwebbed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 160</span> <span class="category">(texture)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0159.jpg" height="72"></div>
+</div
+><div class="unit" data-order="66 70 44">
+<div class="unitlabel">cobwebbed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 44</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0043.jpg" height="72"></div>
+</div
+><div class="unit" data-order="67 71 255">
+<div class="unitlabel">cobwebbed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 255</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0254.jpg" height="72"></div>
+</div
+><div class="unit" data-order="68 10 191">
+<div class="unitlabel">perforated</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 191</span> <span class="category">(texture)</span> <span class="iou">IoU 0.10</span></div>
+<div class="thumbcrop"><img src="image/layer3-0190.jpg" height="72"></div>
+</div
+><div class="unit" data-order="69 16 1">
+<div class="unitlabel">perforated</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 1</span> <span class="category">(texture)</span> <span class="iou">IoU 0.09</span></div>
+<div class="thumbcrop"><img src="image/layer3-0000.jpg" height="72"></div>
+</div
+><div class="unit" data-order="70 25 106">
+<div class="unitlabel">flecked</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 106</span> <span class="category">(texture)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0105.jpg" height="72"></div>
+</div
+><div class="unit" data-order="71 38 41">
+<div class="unitlabel">cracked</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 41</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0040.jpg" height="72"></div>
+</div
+><div class="unit" data-order="72 43 6">
+<div class="unitlabel">lined</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 6</span> <span class="category">(texture)</span> <span class="iou">IoU 0.06</span></div>
+<div class="thumbcrop"><img src="image/layer3-0005.jpg" height="72"></div>
+</div
+><div class="unit" data-order="73 58 139">
+<div class="unitlabel">striped</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 139</span> <span class="category">(texture)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0138.jpg" height="72"></div>
+</div
+><div class="unit" data-order="74 73 100">
+<div class="unitlabel">woven</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 100</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0099.jpg" height="72"></div>
+</div
+><div class="unit" data-order="75 29 162">
+<div class="unitlabel">red</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 162</span> <span class="category">(color)</span> <span class="iou">IoU 0.07</span></div>
+<div class="thumbcrop"><img src="image/layer3-0161.jpg" height="72"></div>
+</div
+><div class="unit" data-order="76 69 235">
+<div class="unitlabel">red</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 235</span> <span class="category">(color)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0234.jpg" height="72"></div>
+</div
+><div class="unit" data-order="77 53 138">
+<div class="unitlabel">purple</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 138</span> <span class="category">(color)</span> <span class="iou">IoU 0.05</span></div>
+<div class="thumbcrop"><img src="image/layer3-0137.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="78 78 67">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 67</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0066.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="79 79 150">
+<div class="unitlabel">drawer</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 150</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0149.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="80 80 18">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 18</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0017.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="81 81 151">
+<div class="unitlabel">plant</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 151</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0150.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="82 82 250">
+<div class="unitlabel">leg</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 250</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0249.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="83 83 19">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 19</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0018.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="84 84 20">
+<div class="unitlabel">waffled</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 20</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0019.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="85 85 55">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 55</span> <span class="category">(texture)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0054.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="86 86 110">
+<div class="unitlabel">body</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 110</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0109.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="87 87 77">
+<div class="unitlabel">book</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 77</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0076.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="88 88 218">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 218</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0217.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="89 89 114">
+<div class="unitlabel">road</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 114</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0113.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="90 90 158">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 158</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0157.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="91 91 99">
+<div class="unitlabel">top</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 99</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0098.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="92 92 52">
+<div class="unitlabel">hair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 52</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0051.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="93 93 220">
+<div class="unitlabel">dog</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 220</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0219.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="94 94 57">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 57</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0056.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="95 95 23">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 23</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0022.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="96 96 10">
+<div class="unitlabel">leg</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 10</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0009.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="97 97 127">
+<div class="unitlabel">grass</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 127</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0126.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="98 98 59">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 59</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0058.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="99 99 35">
+<div class="unitlabel">top</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 35</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0034.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="100 100 146">
+<div class="unitlabel">top</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 146</span> <span class="category">(part)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0145.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="101 101 256">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 256</span> <span class="category">(object)</span> <span class="iou">IoU 0.04</span></div>
+<div class="thumbcrop"><img src="image/layer3-0255.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="102 102 241">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 241</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0240.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="103 103 190">
+<div class="unitlabel">zigzagged</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 190</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0189.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="104 104 45">
+<div class="unitlabel">plant</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 45</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0044.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="105 105 53">
+<div class="unitlabel">back pillow</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 53</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0052.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="106 106 116">
+<div class="unitlabel">column</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 116</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0115.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="107 107 9">
+<div class="unitlabel">windowpane</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 9</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0008.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="108 108 175">
+<div class="unitlabel">perforated</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 175</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0174.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="109 109 49">
+<div class="unitlabel">hair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 49</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0048.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="110 110 46">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 46</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0045.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="111 111 161">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 161</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0160.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="112 112 156">
+<div class="unitlabel">shelf</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 156</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0155.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="113 113 25">
+<div class="unitlabel">pane</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 25</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0024.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="114 114 80">
+<div class="unitlabel">frilly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 80</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0079.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="115 115 89">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 89</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0088.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="116 116 236">
+<div class="unitlabel">zigzagged</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 236</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0235.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="117 117 14">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 14</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0013.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="118 118 121">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 121</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0120.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="119 119 217">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 217</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0216.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="120 120 78">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 78</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0077.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="121 121 11">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 11</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0010.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="122 122 98">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 98</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0097.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="123 123 112">
+<div class="unitlabel">mountain</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 112</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0111.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="124 124 16">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 16</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0015.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="125 125 64">
+<div class="unitlabel">studded</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 64</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0063.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="126 126 198">
+<div class="unitlabel">grass</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 198</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0197.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="127 127 28">
+<div class="unitlabel">bed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 28</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0027.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="128 128 248">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 248</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0247.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="129 129 69">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 69</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0068.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="130 130 21">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 21</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0020.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="131 131 228">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 228</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0227.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="132 132 22">
+<div class="unitlabel">meshed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 22</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0021.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="133 133 221">
+<div class="unitlabel">cracked</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 221</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0220.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="134 134 168">
+<div class="unitlabel">hair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 168</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0167.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="135 135 58">
+<div class="unitlabel">windowpane</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 58</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0057.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="136 136 183">
+<div class="unitlabel">person</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 183</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0182.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="137 137 95">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 95</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0094.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="138 138 223">
+<div class="unitlabel">striped</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 223</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0222.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="139 139 63">
+<div class="unitlabel">pane</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 63</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0062.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="140 140 30">
+<div class="unitlabel">waffled</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 30</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0029.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="141 141 149">
+<div class="unitlabel">arm</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 149</span> <span class="category">(part)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0148.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="142 142 177">
+<div class="unitlabel">grass</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 177</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0176.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="143 143 247">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 247</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0246.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="144 144 74">
+<div class="unitlabel">studded</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 74</span> <span class="category">(texture)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0073.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="145 145 12">
+<div class="unitlabel">plant</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 12</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0011.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="146 146 193">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 193</span> <span class="category">(object)</span> <span class="iou">IoU 0.03</span></div>
+<div class="thumbcrop"><img src="image/layer3-0192.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="147 147 107">
+<div class="unitlabel">bed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 107</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0106.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="148 148 93">
+<div class="unitlabel">black</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 93</span> <span class="category">(color)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0092.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="149 149 143">
+<div class="unitlabel">hair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 143</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0142.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="150 150 32">
+<div class="unitlabel">grass</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 32</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0031.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="151 151 36">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 36</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0035.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="152 152 251">
+<div class="unitlabel">skyscraper</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 251</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0250.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="153 153 140">
+<div class="unitlabel">spiralled</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 140</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0139.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="154 154 85">
+<div class="unitlabel">curtain</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 85</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0084.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="155 155 102">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 102</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0101.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="156 156 43">
+<div class="unitlabel">paisley</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 43</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0042.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="157 157 180">
+<div class="unitlabel">chair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 180</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0179.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="158 158 213">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 213</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0212.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="159 159 174">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 174</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0173.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="160 160 113">
+<div class="unitlabel">eye</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 113</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0112.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="161 161 209">
+<div class="unitlabel">mountain snowy</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 209</span> <span class="category">(scene)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0208.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="162 162 245">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 245</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0244.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="163 163 37">
+<div class="unitlabel">drawer</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 37</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0036.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="164 164 188">
+<div class="unitlabel">head</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 188</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0187.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="165 165 211">
+<div class="unitlabel">hair</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 211</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0210.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="166 166 91">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 91</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0090.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="167 167 101">
+<div class="unitlabel">interlaced</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 101</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0100.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="168 168 70">
+<div class="unitlabel">swirly</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 70</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0069.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="169 169 33">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 33</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0032.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="170 170 253">
+<div class="unitlabel">honeycombed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 253</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0252.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="171 171 65">
+<div class="unitlabel">drawer</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 65</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0064.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="172 172 176">
+<div class="unitlabel">chequered</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 176</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0175.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="173 173 103">
+<div class="unitlabel">building</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 103</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0102.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="174 174 111">
+<div class="unitlabel">body</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 111</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0110.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="175 175 118">
+<div class="unitlabel">sidewalk</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 118</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0117.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="176 176 8">
+<div class="unitlabel">crosswalk</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 8</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0007.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="177 177 249">
+<div class="unitlabel">ear</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 249</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0248.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="178 178 173">
+<div class="unitlabel">zigzagged</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 173</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0172.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="179 179 135">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 135</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0134.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="180 180 60">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 60</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0059.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="181 181 222">
+<div class="unitlabel">interlaced</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 222</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0221.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="182 182 97">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 97</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0096.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="183 183 208">
+<div class="unitlabel">pantry</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 208</span> <span class="category">(scene)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0207.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="184 184 42">
+<div class="unitlabel">paisley</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 42</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0041.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="185 185 232">
+<div class="unitlabel">chandelier</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 232</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0231.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="186 186 148">
+<div class="unitlabel">bed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 148</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0147.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="187 187 224">
+<div class="unitlabel">body</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 224</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0223.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="188 188 196">
+<div class="unitlabel">painting</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 196</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0195.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="189 189 197">
+<div class="unitlabel">bed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 197</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0196.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="190 190 125">
+<div class="unitlabel">yellow</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 125</span> <span class="category">(color)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0124.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="191 191 40">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 40</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0039.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="192 192 39">
+<div class="unitlabel">bed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 39</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0038.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="193 193 5">
+<div class="unitlabel">street</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 5</span> <span class="category">(scene)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0004.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="194 194 122">
+<div class="unitlabel">arm</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 122</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0121.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="195 195 82">
+<div class="unitlabel">fibrous</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 82</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0081.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="196 196 186">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 186</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0185.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="197 197 252">
+<div class="unitlabel">plant</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 252</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0251.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="198 198 230">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 230</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0229.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="199 199 73">
+<div class="unitlabel">spiralled</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 73</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0072.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="200 200 48">
+<div class="unitlabel">tree</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 48</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0047.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="201 201 38">
+<div class="unitlabel">honeycombed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 38</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0037.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="202 202 104">
+<div class="unitlabel">sky</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 104</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0103.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="203 203 244">
+<div class="unitlabel">grass</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 244</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0243.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="204 204 157">
+<div class="unitlabel">black</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 157</span> <span class="category">(color)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0156.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="205 205 254">
+<div class="unitlabel">building</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 254</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0253.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="206 206 184">
+<div class="unitlabel">green</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 184</span> <span class="category">(color)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0183.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="207 207 214">
+<div class="unitlabel">wing</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 214</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0213.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="208 208 187">
+<div class="unitlabel">hand</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 187</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0186.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="209 209 132">
+<div class="unitlabel">fireplace</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 132</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0131.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="210 210 200">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 200</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0199.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="211 211 96">
+<div class="unitlabel">wall</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 96</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0095.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="212 212 201">
+<div class="unitlabel">corridor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 201</span> <span class="category">(scene)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0200.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="213 213 219">
+<div class="unitlabel">pole</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 219</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0218.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="214 214 79">
+<div class="unitlabel">car</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 79</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0078.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="215 215 205">
+<div class="unitlabel">perforated</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 205</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0204.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="216 216 207">
+<div class="unitlabel">pot</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 207</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0206.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="217 217 164">
+<div class="unitlabel">back pillow</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 164</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0163.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="218 218 227">
+<div class="unitlabel">cracked</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 227</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0226.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="219 219 167">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 167</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0166.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="220 220 154">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 154</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0153.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="221 221 169">
+<div class="unitlabel">roof</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 169</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0168.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="222 222 56">
+<div class="unitlabel">footboard</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 56</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0055.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="223 223 145">
+<div class="unitlabel">shop window</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 145</span> <span class="category">(part)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0144.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="224 224 181">
+<div class="unitlabel">windowpane</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 181</span> <span class="category">(object)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0180.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="225 225 204">
+<div class="unitlabel">grid</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 204</span> <span class="category">(texture)</span> <span class="iou">IoU 0.02</span></div>
+<div class="thumbcrop"><img src="image/layer3-0203.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="226 226 15">
+<div class="unitlabel">stern</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 15</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0014.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="227 227 194">
+<div class="unitlabel">yellow</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 194</span> <span class="category">(color)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0193.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="228 228 216">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 216</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0215.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="229 229 88">
+<div class="unitlabel">body</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 88</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0087.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="230 230 86">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 86</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0085.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="231 231 182">
+<div class="unitlabel">polka-dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 182</span> <span class="category">(texture)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0181.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="232 232 233">
+<div class="unitlabel">lid</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 233</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0232.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="233 233 117">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 117</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0116.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="234 234 192">
+<div class="unitlabel">pot</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 192</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0191.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="235 235 51">
+<div class="unitlabel">sidewalk</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 51</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0050.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="236 236 199">
+<div class="unitlabel">leg</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 199</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0198.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="237 237 152">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 152</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0151.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="238 238 123">
+<div class="unitlabel">kitchen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 123</span> <span class="category">(scene)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0122.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="239 239 26">
+<div class="unitlabel">dotted</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 26</span> <span class="category">(texture)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0025.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="240 240 172">
+<div class="unitlabel">screen</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 172</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0171.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="241 241 144">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 144</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0143.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="242 242 246">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 246</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0245.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="243 243 240">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 240</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0239.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="244 244 129">
+<div class="unitlabel">floor</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 129</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0128.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="245 245 109">
+<div class="unitlabel">striped</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 109</span> <span class="category">(texture)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0108.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="246 246 17">
+<div class="unitlabel">building</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 17</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0016.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="247 247 4">
+<div class="unitlabel">grey</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 4</span> <span class="category">(color)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0003.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="248 248 29">
+<div class="unitlabel">headboard</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 29</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0028.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="249 249 195">
+<div class="unitlabel">wheel</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 195</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0194.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="250 250 155">
+<div class="unitlabel">freckled</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 155</span> <span class="category">(texture)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0154.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="251 251 76">
+<div class="unitlabel">conference room</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 76</span> <span class="category">(scene)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0075.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="252 252 137">
+<div class="unitlabel">ceiling</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 137</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0136.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="253 253 165">
+<div class="unitlabel">pot</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 165</span> <span class="category">(part)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0164.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="254 254 105">
+<div class="unitlabel">bed</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 105</span> <span class="category">(object)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0104.jpg" height="72"></div>
+</div
+><div class="unit lowscore" data-order="255 255 147">
+<div class="unitlabel">black</div>
+<div class="info"><span class="layername">layer3</span> <span class="unitnum">unit 147</span> <span class="category">(color)</span> <span class="iou">IoU 0.01</span></div>
+<div class="thumbcrop"><img src="image/layer3-0146.jpg" height="72"></div>
+</div
+></div>
+
+</div>
+<div class="modal" id="lightbox">
+  <div class="modal-dialog big-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close"
+             data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="img-wrapper img-scroller">
+          <img class="fullsize img-fluid">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="footer-caption">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$('img:not([data-nothumb])[src]').wrap(function() {
+  var result = $('<a data-toggle="lightbox">')
+  result.attr('href', $(this).attr('src'));
+  var caption = $(this).closest('figure').find('figcaption').text();
+  if (!caption && $(this).closest('.citation').length) {
+    caption = $(this).closest('.citation').text();
+  }
+  if (caption) {
+    result.attr('data-footer', caption);
+  }
+  var title = $(this).attr('title');
+  if (!title) {
+    title = $(this).closest('td').find('.unit,.score').map(function() {
+      return $(this).text(); }).toArray().join('; ');
+  }
+  if (title) {
+    result.attr('data-title', title);
+  }
+  return result;
+});
+$(document).on('click', '[data-toggle=lightbox]', function(event) {
+    $('#lightbox img').attr('src', $(this).attr('href'));
+    $('#lightbox .modal-title').text($(this).data('title') ||
+       $(this).closest('.unit').find('.unitlabel').text());
+    $('#lightbox .footer-caption').text($(this).data('footer') ||
+       $(this).closest('.unit').find('.info').text());
+    event.preventDefault();
+    $('#lightbox').modal();
+    $('#lightbox img').closest('div').scrollLeft(0);
+});
+$(document).on('keydown', function(event) {
+    $('#lightbox').modal('hide');
+});
+$(document).on('click', '.sortby', function(event) {
+    var sortindex = +$(this).data('index');
+    sortBy(sortindex);
+    $('.sortby').removeClass('currentsort');
+    $(this).addClass('currentsort');
+});
+function sortBy(index) {
+  $('.unitgrid').find('.unit').sort(function (a, b) {
+     return +$(a).eq(0).data('order').split(' ')[index] -
+            +$(b).eq(0).data('order').split(' ')[index];
+  }).appendTo('.unitgrid');
+}
+</script>
+</body>
+</html>
