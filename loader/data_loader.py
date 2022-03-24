@@ -529,7 +529,8 @@ class SegmentationPrefetcher:
         except KeyboardInterrupt:
             print("Caught KeyboardInterrupt, terminating workers")
             self.pool.terminate()
-            raise
+            return
+            # raise
 
     def fetch_tensor_batch(self, bgr_mean=None, global_labels=False):
         '''Iterator for batches as arrays of tensors.'''
@@ -542,7 +543,8 @@ class SegmentationPrefetcher:
             batch = self.fetch_tensor_batch(
                     bgr_mean=bgr_mean, global_labels=global_labels)
             if batch is None:
-                raise StopIteration
+                return
+                # raise StopIteration
             yield batch
 
     def form_caffe_tensors(self, batch, bgr_mean=None, global_labels=False):

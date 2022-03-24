@@ -152,6 +152,7 @@ def numbered_glob(pattern, last=True, decimal=False, every=False):
     if every:
         return all_results
     if best_fn is None:
-        raise IOError(pattern)
+        return
+        # raise IOError(pattern)
     return best_n, best_fn
 
