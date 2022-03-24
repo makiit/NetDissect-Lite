@@ -99,7 +99,7 @@ def generate_html_summary(ds, layer, maxfeature=None, features=None, thresholds=
                 mask = mask > thresholds[unit]
                 vis = (mask[:, :, numpy.newaxis] * 0.8 + 0.2) * image
                 if vis.shape[:2] != (imsize, imsize):
-                    vis = np.array(Image.fromarray(vis).resize((imsize, imsize))
+                    vis = np.array(Image.fromarray(vis).resize((imsize, imsize)))
                 tiled[row*(imsize+gap):row*(imsize+gap)+imsize,
                       col*(imsize+gap):col*(imsize+gap)+imsize,:] = vis
             imsave(ed.filename('html/' + imfn), tiled)
