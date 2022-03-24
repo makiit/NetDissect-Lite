@@ -515,7 +515,7 @@ class SegmentationPrefetcher:
         while True:
             batch = self.fetch_batch()
             if batch is None:
-                raise StopIteration
+                return
             yield batch
 
     def fetch_batch(self):
