@@ -3,7 +3,8 @@ GPU = True                                  # running on GPU is highly suggested
 TEST_MODE = False                          # turning on the testmode means the code will run on a small dataset.
 CLEAN = True                               # set to "True" if you want to clean the temporary large files after generating result
 MODEL = 'resnet18'                          # model arch: resnet18, alexnet, resnet50, densenet161
-DATASET = 'places365'                       # model trained on: places365 or imagenet
+# DATASET = 'places365'   
+DATASET = 'cifar100'                    # model trained on: places365 or imagenet
 QUANTILE = 0.005                            # the threshold used for activation
 SEG_THRESHOLD = 0.04                        # the threshold used for visualization
 SCORE_THRESHOLD = 0.04                      # the threshold used for IoU score (in HTML file)
@@ -31,13 +32,17 @@ if MODEL != 'alexnet':
 else:
     DATA_DIRECTORY = 'dataset/broden1_227'
     IMG_SIZE = 227
-
+if DATASET =='cifar100':
+    NUM_CLASSES = 100
 if DATASET == 'places365':
     NUM_CLASSES = 365
 elif DATASET == 'imagenet':
     NUM_CLASSES = 1000
 if MODEL == 'resnet18':
-    FEATURE_NAMES = ['layer3']
+    FEATURE_NAMES = ['layer4']
+    if DATASET =='cifar100':
+        MODEL_FILE = 'resnet18-200-regular.pth'
+        MODEL_PARALLEL = False
     if DATASET == 'places365':
         MODEL_FILE = 'zoo/resnet18_places365.pth.tar'
         MODEL_PARALLEL = True
