@@ -60,9 +60,9 @@ def get_network(args):
         from models.xception import xception
         net = xception()
     elif args.net == 'resnet18':
-        model = torchvision.models.__dict__["resnet18"](num_classes=100)
+        net = torchvision.models.__dict__["resnet18"](num_classes=100)
         # from models.resnet import resnet18
-        net = resnet18()
+        # net = resnet18()
     elif args.net == 'resnet34':
         from models.resnet import resnet34
         net = resnet34()
