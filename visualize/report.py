@@ -28,7 +28,7 @@ def fix(s):
 
 def generate_html_summary(ds, layer, maxfeature=None, features=None, thresholds=None,
         imsize=None, imscale=72, tally_result=None,
-        gridwidth=None, gap=3, limit=None, force=False, verbose=False):
+        gridwidth=None, gap=3, limit=None, force=False, verbose=True):
     ed = expdir.ExperimentDirectory(settings.OUTPUT_FOLDER)
     print('Generating html summary %s' % ed.filename('html/%s.html' % expdir.fn_safe(layer)))
     # Grab tally stats
