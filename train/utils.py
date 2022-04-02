@@ -61,8 +61,8 @@ def get_network(args):
         net = xception()
     elif args.net == 'resnet18':
         net = torchvision.models.__dict__["resnet18"](num_classes=100,pretrained=False)
-        net.conv1 = nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-        net.maxpool = nn.Identity()
+        net.conv1 = torch.nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        net.maxpool = torch.nn.Identity()
         # from models.resnet import resnet18
         # net = resnet18()
     elif args.net == 'resnet34':
