@@ -9,7 +9,8 @@ parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--model_file', type=str,
                     help='Model weights ')
 args = parser.parse_args()
-path = "resnet_cifar_iter"+args.model_file.split('-')[1]
+# path = "resnet_cifar_iter"+args.model_file.split('-')[1]
+path = "Resnet18_places365"
 fo = FeatureOperator(path)
 print("Loading model file ",args.model_file)
 model = loadmodel(hook_feature,args.model_file)
