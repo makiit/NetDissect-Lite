@@ -20,25 +20,26 @@ def hook_feature(module, input, output):
 
 class FeatureOperator:
 
-    def __init__(self):
-        if not os.path.exists(settings.OUTPUT_FOLDER):
-            os.makedirs(os.path.join(settings.OUTPUT_FOLDER, 'image'))
+    def __init__(self,path):
+        self.out_dir = path
+        if not os.path.exists(self.out_dir):
+            os.makedirs(os.path.join(self.out_dir, 'image'))
         self.data = SegmentationData(settings.DATA_DIRECTORY, categories=settings.CATAGORIES)
         self.loader = SegmentationPrefetcher(self.data,categories=['image'],once=True,batch_size=settings.BATCH_SIZE)
         self.mean = [109.5388,118.6897,124.6901]
-
+        
     def feature_extraction(self, model=None, memmap=True):
         loader = self.loader
         # extract the max value activaiton for each image
         maxfeatures = [None] * len(settings.FEATURE_NAMES)
         wholefeatures = [None] * len(settings.FEATURE_NAMES)
         features_size = [None] * len(settings.FEATURE_NAMES)
-        features_size_file = os.path.join(settings.OUTPUT_FOLDER, "feature_size.npy")
+        features_size_file = os.path.join(self.out_dir, "feature_size.npy")
 
         if memmap:
             skip = True
-            mmap_files =  [os.path.join(settings.OUTPUT_FOLDER, "%s.mmap" % feature_name)  for feature_name in  settings.FEATURE_NAMES]
-            mmap_max_files = [os.path.join(settings.OUTPUT_FOLDER, "%s_max.mmap" % feature_name) for feature_name in settings.FEATURE_NAMES]
+            mmap_files =  [os.path.join(self.out_dir, "%s.mmap" % feature_name)  for feature_name in  settings.FEATURE_NAMES]
+            mmap_max_files = [os.path.join(self.out_dir, "%s_max.mmap" % feature_name) for feature_name in settings.FEATURE_NAMES]
             if os.path.exists(features_size_file):
                 features_size = np.load(features_size_file)
             else:
@@ -104,7 +105,7 @@ class FeatureOperator:
         return wholefeatures,maxfeatures
 
     def quantile_threshold(self, features, savepath=''):
-        qtpath = os.path.join(settings.OUTPUT_FOLDER, savepath)
+        qtpath = os.path.join(self.out_dir, savepath)
         if savepath and os.path.exists(qtpath):
             return np.load(qtpath)
         print("calculating quantile threshold")
@@ -194,7 +195,7 @@ class FeatureOperator:
 
 
     def tally(self, features, threshold, savepath=''):
-        csvpath = os.path.join(settings.OUTPUT_FOLDER, savepath)
+        csvpath = os.path.join(self.out_dir, savepath)
         if savepath and os.path.exists(csvpath):
             return load_csv(csvpath)
 
