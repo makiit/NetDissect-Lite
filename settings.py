@@ -42,7 +42,7 @@ if MODEL == 'resnet18':
     FEATURE_NAMES = ['layer4']
     if DATASET =='cifar100':
         MODEL_FILE = 'resnet18-200-regular.pth'
-        MODEL_PARALLEL = True
+        MODEL_PARALLEL = False
     if DATASET == 'places365':
         MODEL_FILE = 'zoo/resnet18_places365.pth.tar'
         MODEL_PARALLEL = True
