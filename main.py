@@ -6,7 +6,7 @@ from util.clean import clean
 import argparse
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('model_file', metavar='N', type=str,
+parser.add_argument('--model_file', type=str,
                     help='Model weights ')
 args = parser.parse_args()
 
