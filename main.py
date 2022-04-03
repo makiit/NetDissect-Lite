@@ -29,5 +29,6 @@ for layer_id,layer in enumerate(settings.FEATURE_NAMES):
                           maxfeature=maxfeature[layer_id],
                           features=features[layer_id],
                           thresholds=thresholds)
+    print("OUT")
     if settings.CLEAN:
         clean()
