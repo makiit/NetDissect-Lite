@@ -69,7 +69,7 @@ if TEST_MODE:
     OUTPUT_FOLDER += "_test"
 else:
     WORKERS = 12
-    BATCH_SIZE = 64
+    BATCH_SIZE = 32
     TALLY_BATCH_SIZE = 16
     TALLY_AHEAD = 4
     INDEX_FILE = 'index.csv'
