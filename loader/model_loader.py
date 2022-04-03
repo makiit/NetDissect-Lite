@@ -2,11 +2,12 @@ import settings
 import torch
 import torchvision
 
-def loadmodel(hook_fn):
+def loadmodel(hook_fn,model_file):
     if settings.MODEL_FILE is None:
         model = torchvision.models.__dict__[settings.MODEL](pretrained=True)
     else:
-        checkpoint = torch.load(settings.MODEL_FILE)
+        # checkpoint = torch.load(settings.MODEL_FILE)
+        checkpoint = torch.load(model_file)
         if type(checkpoint).__name__ == 'OrderedDict' or type(checkpoint).__name__ == 'dict':
             model = torchvision.models.__dict__[settings.MODEL](num_classes=settings.NUM_CLASSES)
             if settings.MODEL_PARALLEL:

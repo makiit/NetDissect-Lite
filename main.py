@@ -3,9 +3,15 @@ from loader.model_loader import loadmodel
 from feature_operation import hook_feature,FeatureOperator
 from visualize.report import generate_html_summary
 from util.clean import clean
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('model_file', metavar='N', type=str,
+                    help='Model weights ')
+args = parser.parse_args()
 
 fo = FeatureOperator()
-model = loadmodel(hook_feature)
+model = loadmodel(hook_feature,args["model_file"])
 
 ############ STEP 1: feature extraction ###############
 features, maxfeature = fo.feature_extraction(model=model)
