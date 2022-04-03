@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--model_file', type=str,
                     help='Model weights ')
 args = parser.parse_args()
-path = "resnet_cifar_iter"+args.model_file.split('-')
+path = "resnet_cifar_iter"+args.model_file.split('-')[1]
 fo = FeatureOperator(path)
 model = loadmodel(hook_feature,args.model_file)
 
@@ -24,11 +24,11 @@ for layer_id,layer in enumerate(settings.FEATURE_NAMES):
     tally_result = fo.tally(features[layer_id],thresholds,savepath="tally.csv")
 
 ############ STEP 4: generating results ###############
-    generate_html_summary(fo.data, layer,
+    generate_html_summary(fo.data,path, layer,
                           tally_result=tally_result,
                           maxfeature=maxfeature[layer_id],
                           features=features[layer_id],
                           thresholds=thresholds)
     print("OUT")
     if settings.CLEAN:
-        clean()
+        clean(path)
