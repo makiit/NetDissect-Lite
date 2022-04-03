@@ -11,7 +11,7 @@ parser.add_argument('--model_file', type=str,
 args = parser.parse_args()
 
 fo = FeatureOperator()
-model = loadmodel(hook_feature,args["model_file"])
+model = loadmodel(hook_feature,args.model_file)
 
 ############ STEP 1: feature extraction ###############
 features, maxfeature = fo.feature_extraction(model=model)
