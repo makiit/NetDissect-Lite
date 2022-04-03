@@ -8,9 +8,11 @@ import argparse
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--model_file', type=str,
                     help='Model weights ')
+
+parser.add_argument('--savepath',type=str,help="directory to save the results")
 args = parser.parse_args()
 # path = "resnet_cifar_iter"+args.model_file.split('-')[1]
-path = "Resnet18_places365"
+path = args.savepath
 fo = FeatureOperator(path)
 print("Loading model file ",args.model_file)
 model = loadmodel(hook_feature,args.model_file)
