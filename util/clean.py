@@ -1,7 +1,7 @@
 import settings
 import os
 
-def clean():
-    filelist = [f for f in os.listdir(settings.OUTPUT_FOLDER) if f.endswith('mmap')]
+def clean(path):
+    filelist = [f for f in os.listdir(path) if f.endswith('mmap')]
     for f in filelist:
-        os.remove(os.path.join(settings.OUTPUT_FOLDER, f))
+        os.remove(os.path.join(path, f))
