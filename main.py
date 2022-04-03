@@ -11,6 +11,7 @@ parser.add_argument('--model_file', type=str,
 args = parser.parse_args()
 path = "resnet_cifar_iter"+args.model_file.split('-')[1]
 fo = FeatureOperator(path)
+print("Loading model file ",args.model_file)
 model = loadmodel(hook_feature,args.model_file)
 
 ############ STEP 1: feature extraction ###############
