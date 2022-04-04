@@ -31,7 +31,7 @@ class FeatureOperator:
     def feature_extraction(self, model=None, memmap=True):
         loader = self.loader
         # extract the max value activaiton for each image
-        maxfeatures = [None] * len(settings.FEATURE_NAMES)
+        maxfeatures = [None] * len(settings.FEATURE_NAMES) 
         wholefeatures = [None] * len(settings.FEATURE_NAMES)
         features_size = [None] * len(settings.FEATURE_NAMES)
         features_size_file = os.path.join(self.out_dir, "feature_size.npy")
@@ -53,6 +53,7 @@ class FeatureOperator:
                     print('file missing, loading from scratch')
                     skip = False
             if skip:
+                print("Found the feature files..no need to calculate")
                 return wholefeatures, maxfeatures
 
         num_batches = (len(loader.indexes) + loader.batch_size - 1) / loader.batch_size

@@ -1,0 +1,9 @@
+*.pyc
+result/
+checkpoints/
+*.npy
+dataset/
+chekpoints_small/
+.ipynb_checkpoints/
+zoo/
+train/

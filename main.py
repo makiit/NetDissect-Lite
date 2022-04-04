@@ -18,7 +18,7 @@ print("Loading model file ",args.model_file)
 model = loadmodel(hook_feature,args.model_file)
 
 ############ STEP 1: feature extraction ###############
-features, maxfeature = fo.feature_extraction(model=model)
+features, maxfeature = fo.feature_extraction(model=model,memmap=False)
 
 for layer_id,layer in enumerate(settings.FEATURE_NAMES):
 ############ STEP 2: calculating threshold ############
