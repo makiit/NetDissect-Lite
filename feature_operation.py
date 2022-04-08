@@ -132,12 +132,12 @@ class FeatureOperator:
     @staticmethod
     def tally_job(args):
         features, data, threshold, tally_labels, tally_units, tally_units_cat, tally_both, start, end = args
-        units = features.shape[1]
-        size_RF = (settings.IMG_SIZE / features.shape[2], settings.IMG_SIZE / features.shape[3])
-        fieldmap = ((0, 0), size_RF, size_RF)
+        units = features.shape[1] #depth or number of channels (512 for res18 layer 4)
+        size_RF = (settings.IMG_SIZE / features.shape[2], settings.IMG_SIZE / features.shape[3]) #Broden size/ feature map size = (224/7,224,7)
+        fieldmap = ((0, 0), size_RF, size_RF) #((0,0),(32,32),(32,32))
         pd = SegmentationPrefetcher(data, categories=data.category_names(),
                                     once=True, batch_size=settings.TALLY_BATCH_SIZE,
-                                    ahead=settings.TALLY_AHEAD, start=start, end=end)
+                                    ahead=settings.TALLY_AHEAD, start=start, end=end) #broden dataset prefetcher
         count = start
         start_time = time.time()
         last_batch_time = start_time
@@ -149,24 +149,24 @@ class FeatureOperator:
 
             print('labelprobe image index %d, items per sec %.4f, %.4f' % (count, rate, batch_rate))
 
-            for concept_map in batch:
+            for concept_map in batch: #This gives the segmentation masks for each image
                 count += 1
                 img_index = concept_map['i']
                 scalars, pixels = [], []
-                for cat in data.category_names():
+                for cat in data.category_names(): #concept_map has segmentation masks for each category, for scene and texture it has just 1 label for the whole image, but for part,color and object it has masks like in image segentation dataset.
                     label_group = concept_map[cat]
                     shape = np.shape(label_group)
-                    if len(shape) % 2 == 0:
+                    if len(shape) % 2 == 0: # this segments the label groups into scalars (like scene and texture) vs pixel maps
                         label_group = [label_group]
                     if len(shape) < 2:
                         scalars += label_group
                     else:
                         pixels.append(label_group)
                 for scalar in scalars:
-                    tally_labels[scalar] += concept_map['sh'] * concept_map['sw']
+                    tally_labels[scalar] += concept_map['sh'] * concept_map['sw'] #This is basically counting the number of pixels belonging to a particular label. for scalers they add they say that H*W pixels belong to the label
                 if pixels:
                     pixels = np.concatenate(pixels)
-                    tally_label = np.bincount(pixels.ravel())
+                    tally_label = np.bincount(pixels.ravel())#For masks they count the number of pixels belonging to that label
                     if len(tally_label) > 0:
                         tally_label[0] = 0
                     tally_labels[:len(tally_label)] += tally_label
@@ -174,23 +174,24 @@ class FeatureOperator:
                 for unit_id in range(units):
                     feature_map = features[img_index][unit_id]
                     if feature_map.max() > threshold[unit_id]:
-                        mask = np.array(Image.fromarray(feature_map).resize((concept_map['sh'], concept_map['sw'])))
+                        mask = np.array(Image.fromarray(feature_map).resize((concept_map['sh'], concept_map['sw']))) #resizes the feature map to segementation map
                         # mask = imresize(feature_map, (concept_map['sh'], concept_map['sw']), mode='F')
                         #reduction = int(round(settings.IMG_SIZE / float(concept_map['sh'])))
                         #mask = upsample.upsampleL(fieldmap, feature_map, shape=(concept_map['sh'], concept_map['sw']), reduction=reduction)
                         indexes = np.argwhere(mask > threshold[unit_id])
 
-                        tally_units[unit_id] += len(indexes)
+                        tally_units[unit_id] += len(indexes) #counting number of pixels on for the feature map
                         if len(pixels) > 0:
-                            tally_bt = np.bincount(pixels[:, indexes[:, 0], indexes[:, 1]].ravel())
+                            tally_bt = np.bincount(pixels[:, indexes[:, 0], indexes[:, 1]].ravel())#number of pixels having overlab between seg maps from broden and thresholded mask from feature map
                             if len(tally_bt) > 0:
                                 tally_bt[0] = 0
                             tally_cat = np.dot(tally_bt[None,:], data.labelcat[:len(tally_bt), :])[0]
+                            #labelcat is a (labels,categories) matrix telling which label is in which category
                             tally_both[unit_id,:len(tally_bt)] += tally_bt
                         for scalar in scalars:
                             tally_cat += data.labelcat[scalar]
                             tally_both[unit_id, scalar] += len(indexes)
-                        tally_units_cat[unit_id] += len(indexes) * (tally_cat > 0)
+                        tally_units_cat[unit_id] += len(indexes) * (tally_cat > 0) #for each imae conunts the number of pixels in each category
 
 
 
@@ -203,10 +204,10 @@ class FeatureOperator:
         units = features.shape[1]
         labels = len(self.data.label)
         categories = self.data.category_names()
-        tally_both = np.zeros((units,labels),dtype=np.float64)
-        tally_units = np.zeros(units,dtype=np.float64)
-        tally_units_cat = np.zeros((units,len(categories)), dtype=np.float64)
-        tally_labels = np.zeros(labels,dtype=np.float64)
+        tally_both = np.zeros((units,labels),dtype=np.float64) #tally_unit[i,j] tells the number of overlapping pixels between unit i and label j
+        tally_units = np.zeros(units,dtype=np.float64) #tally_units[i] = number of 1 pixels in the feature map after resizing and thresholing
+        tally_units_cat = np.zeros((units,len(categories)), dtype=np.float64) #tally_cat[i] counts the number of active pixels after thresholding and resizing per category.
+        tally_labels = np.zeros(labels,dtype=np.float64) #Total number of 1 pixels for label_id found after going through the entire dataset
 
         if settings.PARALLEL > 1:
             psize = int(np.ceil(float(self.data.size()) / settings.PARALLEL))
@@ -219,7 +220,7 @@ class FeatureOperator:
             FeatureOperator.tally_job((features, self.data, threshold, tally_labels, tally_units, tally_units_cat, tally_both, 0, self.data.size()))
         print("OUT")
         primary_categories = self.data.primary_categories_per_index()
-        tally_units_cat = np.dot(tally_units_cat, self.data.labelcat.T)
+        tally_units_cat = np.dot(tally_units_cat, self.data.labelcat.T) #labelcat is a one-hot matrix of which label is in which category
         iou = tally_both / (tally_units_cat + tally_labels[np.newaxis,:] - tally_both + 1e-10)
         pciou = np.array([iou * (primary_categories[np.arange(iou.shape[1])] == ci)[np.newaxis, :] for ci in range(len(self.data.category_names()))])
         label_pciou = pciou.argmax(axis=2)
