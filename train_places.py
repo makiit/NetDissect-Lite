@@ -77,7 +77,7 @@ def main():
         model.cuda()
     else:
         model = torch.nn.DataParallel(model).cuda()
-    print model
+    print(model)
     # optionally resume from a checkpoint
     if args.resume:
         if os.path.isfile(args.resume):
