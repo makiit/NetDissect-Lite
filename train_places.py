@@ -63,7 +63,7 @@ best_prec1 = 0
 def main():
     global args, best_prec1
     args = parser.parse_args()
-    print args
+    # print args
     # create model
     print("=> creating model '{}'".format(args.arch))
     if args.arch.lower().startswith('wideresnet'):
