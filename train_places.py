@@ -32,7 +32,7 @@ parser.add_argument('--arch', '-a', metavar='ARCH', default='resnet18',
                     help='model architecture: ' +
                         ' | '.join(model_names) +
                         ' (default: resnet18)')
-parser.add_argument('-j', '--workers', default=6, type=int, metavar='N',
+parser.add_argument('-j', '--workers', default=0, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=90, type=int, metavar='N',
                     help='number of total epochs to run')
@@ -129,7 +129,7 @@ def main():
     if args.evaluate:
         validate(val_loader, model, criterion)
         return
-
+    print("Starting Training")
     for epoch in range(args.start_epoch, args.epochs):
         adjust_learning_rate(optimizer, epoch)
 
@@ -147,7 +147,7 @@ def main():
             'arch': args.arch,
             'state_dict': model.state_dict(),
             'best_prec1': best_prec1,
-        }, is_best, args.arch.lower()+"_iter%d"%epoch)
+        }, is_best, args.arch.lower())
 
 
 def train(train_loader, model, criterion, optimizer, epoch):
@@ -164,20 +164,19 @@ def train(train_loader, model, criterion, optimizer, epoch):
     for i, (input, target) in enumerate(train_loader):
         # measure data loading time
         data_time.update(time.time() - end)
-
-        target = target.cuda()
-        input = input.cuda()
-        # input_var = torch.autograd.Variable(input)
-        # target_var = torch.autograd.Variable(target)
+        print("Epoch %d Batch %d"%(epoch,i))
+        target = target.cuda(non_blocking=True)
+        input_var = torch.autograd.Variable(input)
+        target_var = torch.autograd.Variable(target)
         # compute output
-        output = model(input)
-        loss = criterion(output, target)
+        output = model(input_var)
+        loss = criterion(output, target_var)
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(output.data, target, topk=(1, 5))
-        losses.update(loss.data[0], input.size(0))
-        top1.update(prec1[0], input.size(0))
-        top5.update(prec5[0], input.size(0))
+        losses.update(loss.item(), input.size(0))
+        top1.update(prec1.item(), input.size(0))
+        top5.update(prec5.item(), input.size(0))
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
@@ -210,7 +209,7 @@ def validate(val_loader, model, criterion):
 
     end = time.time()
     for i, (input, target) in enumerate(val_loader):
-        target = target.cuda(nonblocking=True)
+        target = target.cuda(non_blocking=True)
         input_var = torch.autograd.Variable(input, volatile=True)
         target_var = torch.autograd.Variable(target, volatile=True)
 
@@ -220,9 +219,9 @@ def validate(val_loader, model, criterion):
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(output.data, target, topk=(1, 5))
-        losses.update(loss.data[0], input.size(0))
-        top1.update(prec1[0], input.size(0))
-        top5.update(prec5[0], input.size(0))
+        losses.update(loss.item(), input.size(0))
+        top1.update(prec1.item(), input.size(0))
+        top5.update(prec5.item(), input.size(0))
 
         # measure elapsed time
         batch_time.update(time.time() - end)
@@ -281,11 +280,11 @@ def accuracy(output, target, topk=(1,)):
 
     _, pred = output.topk(maxk, 1, True, True)
     pred = pred.t()
-    correct = pred.eq(target.view(1, -1).expand_as(pred))
+    correct = pred.eq(target.reshape(1, -1).expand_as(pred))
 
     res = []
     for k in topk:
-        correct_k = correct[:k].view(-1).float().sum(0)
+        correct_k = correct[:k].reshape(-1).float().sum(0)
         res.append(correct_k.mul_(100.0 / batch_size))
     return res
 

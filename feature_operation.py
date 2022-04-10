@@ -204,7 +204,7 @@ class FeatureOperator:
         units = features.shape[1]
         labels = len(self.data.label)
         categories = self.data.category_names()
-        tally_both = np.zeros((units,labels),dtype=np.float64) #tally_unit[i,j] tells the number of overlapping pixels between unit i and label j
+        tally_both = np.zeros((units,labels),dtype=np.float64) #tally_both[i,j] tells the number of overlapping pixels between unit i and label j
         tally_units = np.zeros(units,dtype=np.float64) #tally_units[i] = number of 1 pixels in the feature map after resizing and thresholing
         tally_units_cat = np.zeros((units,len(categories)), dtype=np.float64) #tally_cat[i] counts the number of active pixels after thresholding and resizing per category.
         tally_labels = np.zeros(labels,dtype=np.float64) #Total number of 1 pixels for label_id found after going through the entire dataset
