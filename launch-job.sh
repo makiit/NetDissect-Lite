@@ -24,4 +24,4 @@ nvcc -V
 
 
 # run your code
-python main.py
+python train_places.py --data /expanse/lustre/projects/ddp390/makhan1/places365_standard 
