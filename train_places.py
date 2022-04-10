@@ -146,7 +146,7 @@ def main():
             'arch': args.arch,
             'state_dict': model.state_dict(),
             'best_prec1': best_prec1,
-        }, is_best, args.arch.lower())
+        }, is_best, args.arch.lower()+"iter%d"%epoch)
         best_prec1 = max(prec1, best_prec1)
         save_checkpoint({
             'epoch': epoch + 1,
@@ -171,7 +171,7 @@ def train(train_loader, model, criterion, optimizer, epoch):
         # measure data loading time
         data_time.update(time.time() - end)
         print("Epoch %d Batch %d"%(epoch,i))
-        target = target.cuda(non_blocking=True)
+        target = target.cuda()
         input_var = torch.autograd.Variable(input)
         target_var = torch.autograd.Variable(target)
         # compute output
