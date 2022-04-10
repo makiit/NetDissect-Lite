@@ -170,7 +170,7 @@ def train(train_loader, model, criterion, optimizer, epoch):
     for i, (input, target) in enumerate(train_loader):
         # measure data loading time
         print("Epoch %d Batch %d"%(epoch,i))
-        target = target.cuda(nonblocking=True)
+        target = target.cuda(non_blocking=True)
         # input = input.cuda()
         input_var = torch.autograd.Variable(input)
         target_var = torch.autograd.Variable(target)
