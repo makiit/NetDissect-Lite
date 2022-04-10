@@ -170,13 +170,13 @@ def train(train_loader, model, criterion, optimizer, epoch):
     for i, (input, target) in enumerate(train_loader):
         # measure data loading time
         print("Epoch %d Batch %d"%(epoch,i))
-        target = target.cuda()
-        input = input.cuda()
-        # input_var = torch.autograd.Variable(input)
-        # target_var = torch.autograd.Variable(target)
+        target = target.cuda(nonblocking=True)
+        # input = input.cuda()
+        input_var = torch.autograd.Variable(input)
+        target_var = torch.autograd.Variable(target)
         # compute output
-        output = model(input)
-        loss = criterion(output, target)
+        output = model(input_var)
+        loss = criterion(output, target_var)
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(output.data, target, topk=(1, 5))
