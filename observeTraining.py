@@ -28,7 +28,7 @@ def hook_feature(module, input, output):
     features_blobs.append(output.data.cpu().numpy()[:,start_unit:end_unit,:,:])
 
 
-iters  = [50,100,150,200]
+iters  = [10,20,30,40,50]
 for it in iters:
     model_file = "checkpoints/resnet18-%d-regular.pth"%it
     # model_file = "zoo/resnet18_places365.pth.tar"
