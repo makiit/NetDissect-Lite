@@ -157,8 +157,8 @@ def main():
 
 
 def train(train_loader, model, criterion, optimizer, epoch):
-    batch_time = AverageMeter()
-    data_time = AverageMeter()
+    # batch_time = AverageMeter()
+    # data_time = AverageMeter()
     losses = AverageMeter()
     top1 = AverageMeter()
     top5 = AverageMeter()
@@ -169,14 +169,14 @@ def train(train_loader, model, criterion, optimizer, epoch):
     end = time.time()
     for i, (input, target) in enumerate(train_loader):
         # measure data loading time
-        data_time.update(time.time() - end)
         print("Epoch %d Batch %d"%(epoch,i))
         target = target.cuda()
-        input_var = torch.autograd.Variable(input)
-        target_var = torch.autograd.Variable(target)
+        input = input.cuda()
+        # input_var = torch.autograd.Variable(input)
+        # target_var = torch.autograd.Variable(target)
         # compute output
-        output = model(input_var)
-        loss = criterion(output, target_var)
+        output = model(input)
+        loss = criterion(output, target)
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(output.data, target, topk=(1, 5))
