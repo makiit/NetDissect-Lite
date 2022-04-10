@@ -147,7 +147,7 @@ def main():
             'arch': args.arch,
             'state_dict': model.state_dict(),
             'best_prec1': best_prec1,
-        }, is_best, args.arch.lower())
+        }, is_best, args.arch.lower()+"_iter%d"%epoch)
 
 
 def train(train_loader, model, criterion, optimizer, epoch):
@@ -165,12 +165,13 @@ def train(train_loader, model, criterion, optimizer, epoch):
         # measure data loading time
         data_time.update(time.time() - end)
 
-        target = target.cuda(nonblocking=True)
-        input_var = torch.autograd.Variable(input)
-        target_var = torch.autograd.Variable(target)
+        target = target.cuda()
+        input = input.cuda()
+        # input_var = torch.autograd.Variable(input)
+        # target_var = torch.autograd.Variable(target)
         # compute output
-        output = model(input_var)
-        loss = criterion(output, target_var)
+        output = model(input)
+        loss = criterion(output, target)
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(output.data, target, topk=(1, 5))
