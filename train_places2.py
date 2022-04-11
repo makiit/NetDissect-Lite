@@ -4,6 +4,7 @@ import re
 import datetime
 import time
 import numpy
+import logging
 import argparse
 import torch
 import torch.nn as nn
@@ -75,13 +76,21 @@ def train(epoch):
             images = images.cuda()
 
         optimizer.zero_grad()
-        outputs = net(images)
+        outputs = net(images)logging.info("Testing accuracy for epoch %d = %f"%(epoch,acc))
+
         loss = loss_function(outputs, labels)
         loss.backward()
         optimizer.step()
 
         n_iter = (epoch - 1) * len(training_loader) + batch_index + 1
-
+        if(n_iter%10==0):
+            logging.info('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
+            loss.item(),
+            optimizer.param_groups[0]['lr'],
+            epoch=epoch,
+            trained_samples=batch_index * args.b + len(images),
+            total_samples=len(training_loader.dataset)
+        ))
         print('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
             loss.item(),
             optimizer.param_groups[0]['lr'],
@@ -148,7 +157,7 @@ if __name__ == '__main__':
     parser.add_argument('-epoch',type=int,default=30,help='number of epochs')
     parser.add_argument('-resume', action='store_true', default=False, help='resume training')
     args = parser.parse_args()
-
+    logging.basicConfig(filename = 'loss.log',)
     net = torchvision.models.__dict__["resnet18"](num_classes=365)
     net = net.cuda()
     #data preprocessing:
@@ -176,6 +185,7 @@ if __name__ == '__main__':
         train(epoch)
         acc = eval_training(epoch)
         print("Epoch %d Accuracy %f"%(epoch,acc))
+        logging.info("Testing accuracy for epoch %d = %f"%(epoch,acc))
         if epoch % 2:
             weights_path = checkpoint_path.format(net=args.net, epoch=epoch, type='regular')
             print('saving weights file to {}'.format(weights_path))
