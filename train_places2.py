@@ -6,6 +6,8 @@ import datetime
 import numpy
 
 import torch
+import torch.nn as nn
+import torch.optim as optim
 from torch.optim.lr_scheduler import _LRScheduler
 import torchvision
 import torchvision.transforms as transforms
@@ -32,7 +34,7 @@ def get_training_dataloader(train_path,mean = [0.485, 0.456, 0.406], std = [0.22
     #cifar100_training = CIFAR100Train(path, transform=transform_train)
     training_dataset = torchvision.datasets.ImageFolder(root=train_path, transform=transform_train)
     training_loader = DataLoader(
-        training_dataset, shuffle=shuffle, num_workers=num_workers, batch_size=batch_size)
+        training_dataset, shuffle=shuffle, num_workers=num_workers, batch_size=batch_size,pin_memory=True)
 
     return training_loader
 
@@ -61,3 +63,121 @@ def get_test_dataloader(test_path,mean = [0.485, 0.456, 0.406], std = [0.229, 0.
 
 
 
+def train(epoch):
+
+    start = time.time()
+    net.train()
+    for batch_index, (images, labels) in enumerate(training_loader):
+
+        if args.gpu:
+            labels = labels.cuda()
+            images = images.cuda()
+
+        optimizer.zero_grad()
+        outputs = net(images)
+        loss = loss_function(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        n_iter = (epoch - 1) * len(training_loader) + batch_index + 1
+
+        print('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
+            loss.item(),
+            optimizer.param_groups[0]['lr'],
+            epoch=epoch,
+            trained_samples=batch_index * args.b + len(images),
+            total_samples=len(_training_loader.dataset)
+        ))
+
+    finish = time.time()
+
+    print('epoch {} training time consumed: {:.2f}s'.format(epoch, finish - start))
+
+
+@torch.no_grad()
+def eval_training(epoch=0, tb=True):
+
+    start = time.time()
+    net.eval()
+
+    test_loss = 0.0 # cost function error
+    correct = 0.0
+
+    for (images, labels) in test_loader:
+
+        if args.gpu:
+            images = images.cuda()
+            labels = labels.cuda()
+
+        outputs = net(images)
+        loss = loss_function(outputs, labels)
+
+        test_loss += loss.item()
+        _, preds = outputs.max(1)
+        correct += preds.eq(labels).sum()
+
+    finish = time.time()
+    if args.gpu:
+        print('GPU INFO.....')
+        print(torch.cuda.memory_summary(), end='')
+    print('Evaluating Network.....')
+    print('Test set: Epoch: {}, Average loss: {:.4f}, Accuracy: {:.4f}, Time consumed:{:.2f}s'.format(
+        epoch,
+        test_loss / len(test_loader.dataset),
+        correct.float() / len(test_loader.dataset),
+        finish - start
+    ))
+    print()
+
+    #add informations to tensorboard
+    if tb:
+        writer.add_scalar('Test/Average loss', test_loss / len(cifar100_test_loader.dataset), epoch)
+        writer.add_scalar('Test/Accuracy', correct.float() / len(cifar100_test_loader.dataset), epoch)
+
+    return correct.float() / len(cifar100_test_loader.dataset)
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-net', type=str, required=True, help='net type')
+    parser.add_argument('-gpu', action='store_true', default=False, help='use gpu or not')
+    parser.add_argument('-b', type=int, default=128, help='batch size for dataloader')
+    parser.add_argument('-w',type=int,default=0,help='number of workers')
+    parser.add_argument('-p',type=str,required=True,help='path to dataset')
+    parser.add_argument('-warm', type=int, default=1, help='warm up training phase')
+    parser.add_argument('-lr', type=float, default=0.1, help='initial learning rate')
+    parser.add_argument('-epoch',type=int,default=2,help='number of epochs')
+    parser.add_argument('-resume', action='store_true', default=False, help='resume training')
+    args = parser.parse_args()
+
+    net = torchvision.models.__dict__["resnet18"](num_classes=365)
+
+    #data preprocessing:
+    path = args.p
+    epochs = args.epoch
+    checkpoint_path = os.path.join("./", '{net}-{epoch}-{type}.pth')
+
+    train_path = args.p+"/train"
+    test_path = args.p+"/test"
+    training_loader = get_training_dataloader(train_path,
+        num_workers=args.w,
+        batch_size=args.b,
+        shuffle=True
+    )
+
+    test_loader = get_test_dataloader(test_path,
+        num_workers=args.w,
+        batch_size=args.b
+    )
+    loss_function = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
+    best_acc = 0.0
+    for epoch in range(1, epochs + 1):
+        train(epoch)
+        acc = eval_training(epoch)
+
+        if epoch % 2:
+            weights_path = checkpoint_path.format(net=args.net, epoch=epoch, type='regular')
+            print('saving weights file to {}'.format(weights_path))
+            torch.save(net.state_dict(), weights_path)
