@@ -82,14 +82,13 @@ def train(epoch):
         optimizer.step()
 
         n_iter = (epoch - 1) * len(training_loader) + batch_index + 1
-        if(n_iter%10==0):
-            logging.info('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
-            loss.item(),
-            optimizer.param_groups[0]['lr'],
-            epoch=epoch,
-            trained_samples=batch_index * args.b + len(images),
-            total_samples=len(training_loader.dataset)
-        ))
+        logging.info('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
+        loss.item(),
+        optimizer.param_groups[0]['lr'],
+        epoch=epoch,
+        trained_samples=batch_index * args.b + len(images),
+        total_samples=len(training_loader.dataset)
+    ))
         print('Training Epoch: {epoch} [{trained_samples}/{total_samples}]\tLoss: {:0.4f}\tLR: {:0.6f}'.format(
             loss.item(),
             optimizer.param_groups[0]['lr'],
@@ -155,7 +154,7 @@ if __name__ == '__main__':
     parser.add_argument('-epoch',type=int,default=30,help='number of epochs')
     parser.add_argument('-resume', action='store_true', default=False, help='resume training')
     args = parser.parse_args()
-    logging.basicConfig(filename = 'loss.log',)
+    logging.basicConfig(filename = 'loss.log',filemode='w', level=logging.DEBUG)
     net = torchvision.models.__dict__["resnet18"](num_classes=365)
     net = net.cuda()
     #data preprocessing:
