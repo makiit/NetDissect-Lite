@@ -76,8 +76,7 @@ def train(epoch):
             images = images.cuda()
 
         optimizer.zero_grad()
-        outputs = net(images)logging.info("Testing accuracy for epoch %d = %f"%(epoch,acc))
-
+        outputs = net(images)
         loss = loss_function(outputs, labels)
         loss.backward()
         optimizer.step()
@@ -137,7 +136,6 @@ def eval_training(epoch=0, tb=True):
         correct.float() / len(test_loader.dataset),
         finish - start
     ))
-    print()
 
     #add informations to tensorboard
     return correct.float() / len(test_loader.dataset)
