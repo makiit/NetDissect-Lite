@@ -140,9 +140,9 @@ def eval_training(epoch=0, tb=True):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-net', type=str, required=True, help='net type')
-    parser.add_argument('-gpu', action='store_true', default=False, help='use gpu or not')
-    parser.add_argument('-b', type=int, default=128, help='batch size for dataloader')
+    parser.add_argument('-net', type=str, default="resnet18", help='net type')
+    parser.add_argument('-gpu', action='store_true', default=True, help='use gpu or not')
+    parser.add_argument('-b', type=int, default=256, help='batch size for dataloader')
     parser.add_argument('-w',type=int,default=0,help='number of workers')
     parser.add_argument('-p',type=str,required=True,help='path to dataset')
     parser.add_argument('-warm', type=int, default=1, help='warm up training phase')
@@ -171,12 +171,12 @@ if __name__ == '__main__':
         batch_size=args.b
     )
     loss_function = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
-    best_acc = 0.0
+    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=1e-4)
+    train_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30,60,90], gamma=0.1)
     for epoch in range(1, epochs + 1):
         train(epoch)
         acc = eval_training(epoch)
-
+        print("Epoch %d Accuracy %f"%(epoch,acc))
         if epoch % 2:
             weights_path = checkpoint_path.format(net=args.net, epoch=epoch, type='regular')
             print('saving weights file to {}'.format(weights_path))
