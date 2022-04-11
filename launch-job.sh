@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=test-job
+#SBATCH --job-name=places-train
 #### Change account below
 #SBATCH --account=ddp390
 #SBATCH --partition=gpu-shared
@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=96G
 #SBATCH --gpus=1
-#SBATCH --time=01:00:00
+#SBATCH --time=015:00:00
 #SBATCH --output=output.o%j.%N
 
 # load the environments needed
@@ -24,4 +24,4 @@ nvcc -V
 
 
 # run your code
-python train_places2.py -trainpath /expanse/lustre/projects/ddp390/makhan1/places_small/train -testpath /expanse/lustre/projects/ddp390/makhan1/places365_standard/val -w 4 -b 256
+python train_places2.py -trainpath /expanse/lustre/projects/ddp390/makhan1/places_small/train -testpath /expanse/lustre/projects/ddp390/makhan1/places365_standard/val -w 10 -b 256
