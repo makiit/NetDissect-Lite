@@ -2,9 +2,9 @@ import os
 import sys
 import re
 import datetime
-
+import time
 import numpy
-
+import argparse
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -86,7 +86,7 @@ def train(epoch):
             optimizer.param_groups[0]['lr'],
             epoch=epoch,
             trained_samples=batch_index * args.b + len(images),
-            total_samples=len(_training_loader.dataset)
+            total_samples=len(training_loader.dataset)
         ))
 
     finish = time.time()
@@ -130,11 +130,7 @@ def eval_training(epoch=0, tb=True):
     print()
 
     #add informations to tensorboard
-    if tb:
-        writer.add_scalar('Test/Average loss', test_loss / len(cifar100_test_loader.dataset), epoch)
-        writer.add_scalar('Test/Accuracy', correct.float() / len(cifar100_test_loader.dataset), epoch)
-
-    return correct.float() / len(cifar100_test_loader.dataset)
+    return correct.float() / len(test_loader.dataset)
 
 
 if __name__ == '__main__':
@@ -152,14 +148,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     net = torchvision.models.__dict__["resnet18"](num_classes=365)
-
+    net = net.cuda()
     #data preprocessing:
     path = args.p
     epochs = args.epoch
     checkpoint_path = os.path.join("./", '{net}-{epoch}-{type}.pth')
 
     train_path = args.p+"/train"
-    test_path = args.p+"/test"
+    test_path = args.p+"/val"
     training_loader = get_training_dataloader(train_path,
         num_workers=args.w,
         batch_size=args.b,
