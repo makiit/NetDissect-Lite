@@ -50,7 +50,8 @@ def get_test_dataloader(test_path,mean = [0.485, 0.456, 0.406], std = [0.229, 0.
     Returns: cifar100_test_loader:torch dataloader object
     """
 
-    transform_test = transforms.Compose([
+    transform_test = transforms.Compose([transforms.Resize(256),
+            transforms.CenterCrop(224),
         transforms.ToTensor(),
         transforms.Normalize(mean, std)
     ])
@@ -143,7 +144,7 @@ if __name__ == '__main__':
     parser.add_argument('-p',type=str,required=True,help='path to dataset')
     parser.add_argument('-warm', type=int, default=1, help='warm up training phase')
     parser.add_argument('-lr', type=float, default=0.1, help='initial learning rate')
-    parser.add_argument('-epoch',type=int,default=2,help='number of epochs')
+    parser.add_argument('-epoch',type=int,default=30,help='number of epochs')
     parser.add_argument('-resume', action='store_true', default=False, help='resume training')
     args = parser.parse_args()
 
@@ -167,9 +168,11 @@ if __name__ == '__main__':
         batch_size=args.b
     )
     loss_function = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=1e-4)
-    train_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30,60,90], gamma=0.1)
+    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
+    # train_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[5,10,15], gamma=0.1)
+    train_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs, eta_min=0, last_epoch=- 1, verbose=False)
     for epoch in range(1, epochs + 1):
+        train_scheduler.step()
         train(epoch)
         acc = eval_training(epoch)
         print("Epoch %d Accuracy %f"%(epoch,acc))
