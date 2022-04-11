@@ -141,7 +141,8 @@ if __name__ == '__main__':
     parser.add_argument('-gpu', action='store_true', default=True, help='use gpu or not')
     parser.add_argument('-b', type=int, default=256, help='batch size for dataloader')
     parser.add_argument('-w',type=int,default=0,help='number of workers')
-    parser.add_argument('-p',type=str,required=True,help='path to dataset')
+    parser.add_argument('-trainpath',type=str,required=True,help='path to train dataset')
+    parser.add_argument('-testpath',type=str,required=True,help='path to test dataset')
     parser.add_argument('-warm', type=int, default=1, help='warm up training phase')
     parser.add_argument('-lr', type=float, default=0.1, help='initial learning rate')
     parser.add_argument('-epoch',type=int,default=30,help='number of epochs')
@@ -151,12 +152,11 @@ if __name__ == '__main__':
     net = torchvision.models.__dict__["resnet18"](num_classes=365)
     net = net.cuda()
     #data preprocessing:
-    path = args.p
     epochs = args.epoch
     checkpoint_path = os.path.join("./", '{net}-{epoch}-{type}.pth')
 
-    train_path = args.p+"/train"
-    test_path = args.p+"/val"
+    train_path = args.trainpath
+    test_path = args.testpath
     training_loader = get_training_dataloader(train_path,
         num_workers=args.w,
         batch_size=args.b,
