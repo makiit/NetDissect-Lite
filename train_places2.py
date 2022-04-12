@@ -66,7 +66,7 @@ def get_test_dataloader(test_path,mean = [0.485, 0.456, 0.406], std = [0.229, 0.
 
 
 def train(epoch):
-
+    checkpoint_path = os.path.join("./", '{net}-epoch1_{iter}-{type}.pth')
     start = time.time()
     net.train()
     for batch_index, (images, labels) in enumerate(training_loader):
@@ -96,6 +96,11 @@ def train(epoch):
             trained_samples=batch_index * args.b + len(images),
             total_samples=len(training_loader.dataset)
         ))
+    if(epoch==1 and batch_index%100==0):
+        logging.info("Saving model ")
+        weights_path = checkpoint_path.format(net=args.net, iter=batch_index, type='regular')
+        print('saving weights file to {}'.format(weights_path))
+        torch.save(net.state_dict(), weights_path)
 
     finish = time.time()
 
@@ -178,12 +183,17 @@ if __name__ == '__main__':
     # train_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[5,10,15], gamma=0.1)
     train_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs, eta_min=0, last_epoch=- 1, verbose=False)
     for epoch in range(1, epochs + 1):
-        train_scheduler.step()
         train(epoch)
+        train_scheduler.step()
         acc = eval_training(epoch)
         print("Epoch %d Accuracy %f"%(epoch,acc))
         logging.info("Testing accuracy for epoch %d = %f"%(epoch,acc))
         if epoch % 2:
             weights_path = checkpoint_path.format(net=args.net, epoch=epoch, type='regular')
             print('saving weights file to {}'.format(weights_path))
-            torch.save(net.state_dict(), weights_path)
+            # torch.save(net.state_dict(), weights_path)
+            torch.save({
+            'epoch': epoch,
+            'model_state_dict': net.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            }, weights_path)
