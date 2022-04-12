@@ -96,12 +96,12 @@ def train(epoch):
             trained_samples=batch_index * args.b + len(images),
             total_samples=len(training_loader.dataset)
         ))
-    print(epoch,batch_index)
-    if(epoch==1 and batch_index%10==0):
-        logging.info("Saving model ")
-        weights_path = checkpoint_path.format(net=args.net, iter=batch_index, type='regular')
-        print('saving weights file to {}'.format(weights_path))
-        torch.save(net.state_dict(), weights_path)
+        # print(epoch,batch_index)
+        if(epoch==1 and batch_index%10==0):
+            logging.info("Saving model ")
+            weights_path = checkpoint_path.format(net=args.net, iter=batch_index, type='regular')
+            print('saving weights file to {}'.format(weights_path))
+            torch.save(net.state_dict(), weights_path)
 
     finish = time.time()
 
