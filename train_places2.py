@@ -66,7 +66,7 @@ def get_test_dataloader(test_path,mean = [0.485, 0.456, 0.406], std = [0.229, 0.
 
 
 def train(epoch):
-    checkpoint_path = os.path.join("./", '{net}-epoch1_{iter}-{type}.pth')
+    checkpoint_path = os.path.join("./places_standard/", '{net}-epoch1_{iter}-{type}.pth')
     start = time.time()
     net.train()
     for batch_index, (images, labels) in enumerate(training_loader):
@@ -157,15 +157,15 @@ if __name__ == '__main__':
     parser.add_argument('-testpath',type=str,required=True,help='path to test dataset')
     parser.add_argument('-warm', type=int, default=1, help='warm up training phase')
     parser.add_argument('-lr', type=float, default=0.1, help='initial learning rate')
-    parser.add_argument('-epoch',type=int,default=30,help='number of epochs')
+    parser.add_argument('-epoch',type=int,default=40,help='number of epochs')
     parser.add_argument('-resume', action='store_true', default=False, help='resume training')
     args = parser.parse_args()
-    logging.basicConfig(filename = 'loss.log',filemode='w', level=logging.DEBUG)
+    logging.basicConfig(filename = 'loss_big.log',filemode='w', level=logging.DEBUG)
     net = torchvision.models.__dict__["resnet18"](num_classes=365)
     net = net.cuda()
     #data preprocessing:
     epochs = args.epoch
-    checkpoint_path = os.path.join("./", '{net}-{epoch}-{type}.pth')
+    checkpoint_path = os.path.join("./places_standard/", '{net}-{epoch}-{type}.pth')
 
     train_path = args.trainpath
     test_path = args.testpath

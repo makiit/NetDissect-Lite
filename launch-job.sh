@@ -24,4 +24,4 @@ nvcc -V
 
 
 # run your code
-python train_places2.py -trainpath /expanse/lustre/projects/ddp390/makhan1/places_small/train -testpath /expanse/lustre/projects/ddp390/makhan1/places365_standard/val -w 10 -b 256
+python train_places2.py -trainpath /expanse/lustre/projects/ddp390/makhan1/places365_standard/train -testpath /expanse/lustre/projects/ddp390/makhan1/places365_standard/val -w 10 -b 256
