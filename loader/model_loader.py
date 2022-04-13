@@ -17,7 +17,7 @@ def loadmodel(hook_fn,model_file):
                 state_dict = {str.replace(k, 'module.', ''): v for k, v in checkpoint[
                     'state_dict'].items()}  # the data parallel layer will add 'module' before each layer name
             else:
-                state_dict = checkpoint
+                state_dict = checkpoint["model_state_dict"]
             model.load_state_dict(state_dict)
         else:
             model = checkpoint
